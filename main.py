@@ -1,18 +1,20 @@
 import xmltodict
 import csv
 
+# Usa essas variaveis para percorrer os arquivos do diretorio /files/
 ok = True
+# Contador inicial
 i = 1
+max_indices = 1081
+# Por padrão todos os arquivos devem ser nomeados como "mail (X).xml" - o X corresponde há um número que deve começar em 1
 
-# max_indices = 1081
-max_indices = 1
-
+# Para gerar posteriormente o arquivo de contatos em CSV
 data = [
-    ["Email", "Full Name"],
+  ["Email", "Full Name"],
 ]
 
 while ok:
-  filepath = f"./files/email ({i}).xml"
+  filepath = f"./files/mail ({i}).xml"
   print(f"Abrindo o arquivo {filepath}")
 
   try:
@@ -57,10 +59,9 @@ while ok:
     if i > max_indices:
       ok = False
 
-
-# Criar o arquivo CSV
-with open("pessoas.csv", "w", newline="", encoding="utf-8") as csv_file:
-    writer = csv.writer(csv_file)
-    writer.writerows(data)
+# Cria o arquivo CSV
+with open("contacts.csv", "w", newline="", encoding="utf-8") as csv_file:
+  writer = csv.writer(csv_file)
+  writer.writerows(data)
 
 print("Arquivo CSV criado com sucesso")
